@@ -31,4 +31,11 @@ export const categoryType = defineType({
       },
     }),
   ],
-})
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'description',
+      media: 'image',
+    },
+  },
+});
