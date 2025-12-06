@@ -10,16 +10,19 @@ import CartIcon from "./CartIcon";
 import { currentUser } from "@clerk/nextjs/server";
 import { ClerkLoaded, SignInButton,SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { getAllCategories } from "@/sanity/lib/helpers/queries";
 
 const Header = async () => {
   const user = await currentUser();
   // console.log("user", user);
+  const categories = await getAllCategories();
 
+  console.log(categories);
   return (
-    <div>
-      <header className="border-b border-b-gray-400 py-5">
+   
+      <header className="border-b border-b-gray-400 py-5 sticky top-0 z-50 bg-white/95 backdrop-blur-sm ">
         <Container className="flex items-center justify-between gap-7 text-lightColor">
-          <HeaderMenu />
+          <HeaderMenu categories={categories}/>
           <div
             className="w-auto md:w-1/3 flex items-center 
       justify-center gap-2.5"
@@ -58,7 +61,6 @@ const Header = async () => {
           </div>
         </Container>
       </header>
-    </div>
   );
 };
 

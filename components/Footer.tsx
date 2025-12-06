@@ -37,7 +37,6 @@ const Footer = () => {
               </div>
           </div>
           <div>
-              //
                 <div>
               <h3 className="font-semibold text-darkColor mb-4">Categories</h3>
               <div className='flex flex-col gap-3'>
@@ -49,8 +48,6 @@ const Footer = () => {
                   </Link>
                 ))}
               </div>
-
-              //
           </div>
           </div>
           <div>
