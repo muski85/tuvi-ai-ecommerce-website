@@ -22,10 +22,12 @@ import { Separator } from "@/components/ui/separator";
 import paypaLogo from "@/images/paypalLogo.png";
 import { motion } from "motion/react";
 import AnimatedHeart from "@/components/AnimatedHeart";
+import { createCheckoutSession, Metadata } from "@/actions/createCheckoutSession";
 
 const CartPage = () => {
   const [isClient, setIsClient] = useState(false);
   const { isSignedIn } = useAuth();
+  const [loading, setLoading] = useState(false);
   const {
     deleteCartProduct,
     getTotalPrice,
@@ -55,6 +57,28 @@ const CartPage = () => {
     deleteCartProduct(id);
     toast.success("Product removed from cart successfully");
   };
+
+  const handleCheckout = async() => {
+    // toast.error("Checkout functionality is not implemented yet.");
+    setLoading(true);
+    try{
+      const metadata: Metadata={
+        orderNumber:crypto.randomUUID(),
+        customerName:user?.fullName ?? 'Unknown',
+        customerEmail:user?.emailAddresses[0]?.emailAddress ?? 'Unknown',
+        clerkUserId:user!.id,
+      }
+      const checkoutUrl = await createCheckoutSession(cartProducts, metadata);
+      if(checkoutUrl){
+        window.location.href=checkoutUrl;
+      }
+    } catch (error){
+      console.error('Error creating checkout session: ', error);
+    } finally{
+      setLoading(false);
+    }
+
+  }
 
   if (!isClient) {
     return <Loading />;
@@ -226,11 +250,11 @@ const CartPage = () => {
                     {/* Reset Cart Button */}
                     <div className="p-4 border-t bg-gray-50">
                       <Button
-                        className="font-semibold"
+                        className="font-semibold border-gray-300 hover:bg-red-50 hover:border-red-500 hover:text-red-600 transition-all duration-200 group"
                         variant="outline"
                         onClick={handleResetCart}
                       >
-                        <Trash className="w-4 h-4 mr-2" />
+                        <Trash className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                         Clear Cart
                       </Button>
                     </div>
@@ -288,6 +312,7 @@ const CartPage = () => {
                         <Button
                           className="w-full rounded-full font-semibold tracking-wide text-base h-12"
                           size="lg"
+                          onClick={handleCheckout}
                         >
                           Proceed to Checkout
                         </Button>

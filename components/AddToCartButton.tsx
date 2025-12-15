@@ -16,7 +16,7 @@ const AddToCartButton = ({product, className}: Props) => {
   const {addItem, getItemCount} = useCartStore();
   const itemCount = getItemCount(product?._id);
   const isOutOfStock = product?.stock === 0;
-  console.log("Item count in AddToCartButton:", itemCount);
+  // console.log("Item count in AddToCartButton:", itemCount);
   return (
     <div className='w-full h-12 flex items-center'>
       {itemCount ? (

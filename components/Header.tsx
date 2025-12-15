@@ -17,7 +17,7 @@ const Header = async () => {
   // console.log("user", user);
   const categories = await getAllCategories();
 
-  console.log(categories);
+
   return (
    
       <header className="border-b border-b-gray-400 py-5 sticky top-0 z-50 bg-white/95 backdrop-blur-sm ">
