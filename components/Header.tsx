@@ -20,12 +20,12 @@ const Header = async () => {
 
   return (
    
-      <header className="border-b border-b-gray-400 py-5 sticky top-0 z-50 bg-white/95 backdrop-blur-sm ">
+      <header className="border-b border-b-gray-400 py-5 sticky top-0 z-50 bg-white/95 shadow-sm ">
         <Container className="flex items-center justify-between gap-7 text-lightColor">
           <HeaderMenu categories={categories}/>
           <div
             className="w-auto md:w-1/3 flex items-center 
-      justify-center gap-2.5"
+      justify-center gap-2.5 "
           >
             <MobileMenu />
             <Logo>Tuvi</Logo>

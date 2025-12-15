@@ -18,7 +18,7 @@ const Sidebar: FC<SidebarProps>= ({isOpen, onClose}) => {
   const pathname = usePathname();
   const sidebarRef = useOutsideClick<HTMLDivElement>(onClose);
   return (
-    <div className={`fixed inset-y-0 left-0 z-50 bg-darkColor/50 shadow-xl hoverEffect cursor-auto w-full
+    <div className={`fixed inset-y-0 left-0 z-[90] bg-darkColor/50 shadow-xl hoverEffect cursor-auto w-full
       ${isOpen ? 'translate-x-0': '-translate-x-full'}
     `}>
       <motion.div className="min-w-72 max-w-96 bg-darkColor text-white/70 h-full p-10 border-r border-r-white flex flex-col gap-6"
