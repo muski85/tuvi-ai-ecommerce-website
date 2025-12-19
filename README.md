@@ -1,19 +1,19 @@
-# 🛍️ Tuvi - Modern E-Commerce Platform
+# Tuvi - Modern E-Commerce Platform
 
 A full-stack e-commerce application built with Next.js 15, featuring AI-powered shopping assistance, real-time payments, and seamless user experience.
 
-## ✨ Features
+## Features
 
-- 🤖 **AI Shopping Assistant** - Google Gemini-powered chatbot for product recommendations
-- 💳 **Stripe Payments** - Secure checkout with webhook integration
-- 🔐 **Authentication** - Clerk-based user management
-- 📦 **Product Management** - Sanity CMS for dynamic content
-- 🛒 **Shopping Cart** - Persistent cart with Zustand state management
-- 📱 **Responsive Design** - Mobile-first approach with Tailwind CSS
-- 🎨 **Smooth Animations** - Framer Motion for delightful UX
-- 📊 **Order Tracking** - Complete order history and management
+-  **AI Shopping Assistant** - Google Gemini-powered chatbot for product recommendations
+-  **Stripe Payments** - Secure checkout with webhook integration
+-  **Authentication** - Clerk-based user management
+-  **Product Management** - Sanity CMS for dynamic content
+-  **Shopping Cart** - Persistent cart with Zustand state management
+-  **Responsive Design** - Mobile-first approach with Tailwind CSS
+-  **Smooth Animations** - Framer Motion for delightful UX
+-  **Order Tracking** - Complete order history and management
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 **Frontend:**
 - Next.js 15
@@ -31,11 +31,11 @@ A full-stack e-commerce application built with Next.js 15, featuring AI-powered 
 **Deployment:**
 - Vercel
 
-## 📦 Installation
+##  Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/tuvi-ecommerce.git
+git clone https://github.com/muski85/tuvi-ai-ecommerce-website.git
 cd tuvi-ecommerce
 ```
 
@@ -78,11 +78,11 @@ npm run dev
 
 5. Open [http://localhost:3000](http://localhost:3000)
 
-## 📸 Screenshots
+##  Screenshots
 
 (Add screenshots here)
 
-## 🎯 Key Learnings
+## Key Learnings
 
 - Full-stack development with Next.js 15
 - AI integration with Google Gemini
@@ -91,15 +91,15 @@ npm run dev
 - State management patterns
 - Real-time data synchronization
 
-## 🚀 Deployment
+## Deployment
 
 Deployed on Vercel: [Live Demo](https://tuvi.vercel.app)
 
-## 📄 License
+## License
 
 MIT License
 
-## 👤 Author
+## Author
 
 **Your Name**
 - GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
