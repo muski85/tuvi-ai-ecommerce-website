@@ -36,8 +36,8 @@ export default function ContactPage() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
-      content: "support@tulos.com",
-      link: "mailto:support@tulos.com"
+      content: "support@tuvi.com",
+      link: "mailto:support@tuvi.com"
     },
     {
       icon: <Phone className="w-6 h-6" />,

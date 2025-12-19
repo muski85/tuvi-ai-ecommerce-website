@@ -8,7 +8,7 @@ import { useUser, useAuth } from "@clerk/nextjs";
 import Container from "@/components/Container";
 import NoAccessToCart from "@/components/NoAccessToCart";
 import EmptyCart from "@/components/EmptyCart";
-import { Heart, ShoppingBag, Trash } from "lucide-react";
+import {ShoppingBag, Trash } from "lucide-react";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,7 +59,6 @@ const CartPage = () => {
   };
 
   const handleCheckout = async() => {
-    // toast.error("Checkout functionality is not implemented yet.");
     setLoading(true);
     try{
       const metadata: Metadata={
@@ -310,6 +309,7 @@ const CartPage = () => {
 
                         {/* Checkout Button */}
                         <Button
+                          disabled={loading}
                           className="w-full rounded-full font-semibold tracking-wide text-base h-12"
                           size="lg"
                           onClick={handleCheckout}

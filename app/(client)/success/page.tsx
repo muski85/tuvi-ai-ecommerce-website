@@ -21,7 +21,7 @@ const SuccessPage = () => {
       resetCart()
     }
 
-  },[orderNumber, sessionId, resetCart]);
+  },[orderNumber, sessionId, resetCart,router]);
 
   
   

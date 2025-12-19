@@ -1,10 +1,11 @@
 import AddToCartButton from '@/components/AddToCartButton';
+import AnimatedHeart from '@/components/AnimatedHeart';
 import Container from '@/components/Container'
 import ImageView from '@/components/ImageView';
 import PriceView from '@/components/PriceView';
 import ProductCharacteristics from '@/components/ProductCharacteristics';
 import { getProductBySlug } from '@/sanity/lib/helpers/queries';
-import { BoxIcon, FileQuestion, Heart, ListOrderedIcon, Share } from 'lucide-react';
+import { BoxIcon, FileQuestion,ListOrderedIcon, Share } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
@@ -47,9 +48,10 @@ const SingleProductPage = async({
               className='bg-darkColor/80 text-white hover:bg-darkColor hoverEffect'
               
               />
-              <button className='border-2 border-darkColor/30 text-darkColor/60 px-2.5 py-1.5 rounded-md hover:textdarkColor hover:border-darkColor hoverEffect'>
-                <Heart className='w-5 h-5'/>
-              </button>
+                <div className='border-2 border-darkColor/30 text-darkColor/60 px-0 py-0 rounded-md hover:textdarkColor hover:border-darkColor hoverEffect'>
+                <AnimatedHeart/>
+                </div>
+              
             </div>
             <ProductCharacteristics product={product} />
             <div className='flex flex-wrap items-center justify-between gap-2.5 border-b border-b-gray-200 py-5 -mt-2'>

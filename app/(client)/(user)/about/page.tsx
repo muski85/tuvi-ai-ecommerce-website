@@ -44,7 +44,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-darkColor mb-6">Our Story</h2>
             <div className="space-y-4 text-darkText">
               <p>
-                Founded with a passion for bringing quality products to everyone, Tulos has grown 
+                Founded with a passion for bringing quality products to everyone, Tuvi has grown 
                 from a small startup to a trusted e-commerce platform serving thousands of happy customers.
               </p>
               <p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
       {/* Features Grid */}
       <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-darkColor text-center mb-12">Why Choose Tulos</h2>
+          <h2 className="text-3xl font-bold text-darkColor text-center mb-12">Why Choose Tuvi</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <div 

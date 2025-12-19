@@ -6,7 +6,7 @@ export default function TermsPage() {
     {
       icon: <FileText className="w-6 h-6" />,
       title: "Acceptance of Terms",
-      content: `By accessing and using Tulos ("the Website"), you accept and agree to be bound by these Terms and Conditions. 
+      content: `By accessing and using Tuvi ("the Website"), you accept and agree to be bound by these Terms and Conditions. 
       If you do not agree to these terms, please do not use our services. We reserve the right to modify these terms at any time, 
       and your continued use constitutes acceptance of any changes.`
     },
@@ -88,7 +88,7 @@ export default function TermsPage() {
             <span className="font-semibold text-darkColor">Last Updated:</span> November 11, 2025
           </p>
           <p className="text-sm text-darkText mt-2">
-            These Terms and Conditions govern your use of Tulos and your purchase of products through our website.
+            These Terms and Conditions govern your use of Tuvi and your purchase of products through our website.
           </p>
         </div>
       </div>
@@ -157,7 +157,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-darkColor mb-6">Intellectual Property</h2>
             <p className="text-darkText mb-4">
               All content on this website, including text, graphics, logos, images, and software, is the property 
-              of Tulos or its content suppliers and is protected by copyright, trademark, and other intellectual 
+              of Tuvi or its content suppliers and is protected by copyright, trademark, and other intellectual 
               property laws.
             </p>
             <p className="text-darkText">
@@ -202,7 +202,7 @@ export default function TermsPage() {
           <div className="bg-white rounded-xl p-8 shadow-sm">
             <h2 className="text-2xl font-bold text-darkColor mb-6">Limitation of Liability</h2>
             <p className="text-darkText mb-4">
-              To the maximum extent permitted by law, Tulos shall not be liable for any indirect, incidental, 
+              To the maximum extent permitted by law, Tuvi shall not be liable for any indirect, incidental, 
               special, consequential, or punitive damages, including loss of profits, data, or use, arising from:
             </p>
             <ul className="space-y-3 ml-6 text-darkText">
@@ -263,7 +263,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-darkColor mb-6">Entire Agreement</h2>
             <p className="text-darkText">
               These Terms and Conditions, together with our Privacy Policy and any other legal notices published 
-              on this website, constitute the entire agreement between you and Tulos regarding your use of our services.
+              on this website, constitute the entire agreement between you and Tuvi regarding your use of our services.
             </p>
           </div>
 
@@ -277,9 +277,9 @@ export default function TermsPage() {
                   If you have any questions or concerns about these Terms and Conditions, please contact us:
                 </p>
                 <div className="space-y-2 text-white/90">
-                  <p><strong>Email:</strong> legal@tulos.com</p>
+                  <p><strong>Email:</strong> legal@tuvi.com</p>
                   <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                  <p><strong>Mail:</strong> Tulos Legal Department, 123 Commerce Street, CA 90210</p>
+                  <p><strong>Mail:</strong> Tuvi Legal Department, 123 Commerce Street, CA 90210</p>
                 </div>
               </div>
             </div>

@@ -88,7 +88,7 @@ export default function PrivacyPage() {
             <span className="font-semibold text-darkColor">Last Updated:</span> November 11, 2025
           </p>
           <p className="text-sm text-darkText mt-2">
-            This Privacy Policy describes how Tulos ("we," "us," or "our") collects, uses, and shares your personal information.
+            This Privacy Policy describes how Tuvi ("we," "us," or "our") collects, uses, and shares your personal information.
           </p>
         </div>
       </div>
@@ -207,9 +207,9 @@ export default function PrivacyPage() {
               please don't hesitate to contact us.
             </p>
             <div className="space-y-2 text-white/90">
-              <p><strong>Email:</strong> privacy@tulos.com</p>
+              <p><strong>Email:</strong> privacy@Tuvi.com</p>
               <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-              <p><strong>Mail:</strong> Tulos Privacy Team, 123 Commerce Street, CA 90210</p>
+              <p><strong>Mail:</strong> Tuvi Privacy Team, 123 Commerce Street, CA 90210</p>
             </div>
           </div>
         </div>

@@ -7,14 +7,20 @@ import Link from 'next/link';
 import headerData from '@/constants';
 import SocialMedia from './SocialMedia';
 import { useOutsideClick } from '@/hooks/useOutsideClick';
-
+import { CATEGORIES_QUERYResult } from '@/sanity.types';
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  categories: CATEGORIES_QUERYResult,
 }
 
-const Sidebar: FC<SidebarProps>= ({isOpen, onClose}) => {
+const Sidebar: FC<SidebarProps>= ({
+  isOpen, 
+  onClose,
+  categories
+
+}) => {
   const pathname = usePathname();
   const sidebarRef = useOutsideClick<HTMLDivElement>(onClose);
   return (
@@ -37,17 +43,19 @@ const Sidebar: FC<SidebarProps>= ({isOpen, onClose}) => {
           </button>
         </div>
          <div className= "flex flex-col gap-3.5 text-base font-semibold tracking-wide">
-      {headerData?.map((item) => (
+      {categories?.map((category) => (
         <Link 
-        onClick={onClose}
-        key={item?.title} href={item?.href}
-        className={`hover:text-white hoverEffect w-24
-          ${pathname === item?.href && "text-white"}
-          `}
-        >
-          {item?.title}
-          
-        </Link>
+  onClick={onClose}
+  key={category?._id} 
+  href={`/category/${category?.slug?.current}`}
+  className={`px-4 py-2.5 rounded-lg transition-all hoverEffect
+    ${pathname === `/category/${category?.slug?.current}`
+      ? "bg-gradient-to-r from-darkColor to-gray-800 text-white" 
+      : "text-gray-700 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-200"}
+  `}
+>
+  {category?.title}
+</Link>
       ))}
        
     </div>
