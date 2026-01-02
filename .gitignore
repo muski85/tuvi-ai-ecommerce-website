@@ -46,3 +46,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#notes
+notes/
+
+# Claude Code
+.claude/
+
+# Test files
+test-*.js

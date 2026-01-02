@@ -1,42 +1,45 @@
-# Tuvi - Modern E-Commerce Platform
+# Tuvi - E-Commerce Platform
 
-A full-stack e-commerce application built with Next.js 15, featuring AI-powered shopping assistance, real-time payments, and seamless user experience.
+A modern full-stack e-commerce application built with Next.js 15, featuring AI-powered shopping assistance, secure payments, and real-time product management.
 
 ## Features
 
--  **AI Shopping Assistant** - Google Gemini-powered chatbot for product recommendations
--  **Stripe Payments** - Secure checkout with webhook integration
--  **Authentication** - Clerk-based user management
--  **Product Management** - Sanity CMS for dynamic content
--  **Shopping Cart** - Persistent cart with Zustand state management
--  **Responsive Design** - Mobile-first approach with Tailwind CSS
--  **Smooth Animations** - Framer Motion for delightful UX
--  **Order Tracking** - Complete order history and management
+- **AI Shopping Assistant** - Gemini-powered chatbot for personalized product recommendations
+- **Secure Payments** - Stripe integration with webhook support for order processing
+- **User Authentication** - Clerk authentication with order history tracking
+- **Content Management** - Sanity CMS for dynamic product and category management
+- **Cart Management** - Persistent shopping cart with Zustand state management
+- **Rate Limiting** - Redis-based API protection to prevent abuse
+- **Product Caching** - Upstash Redis for faster page loads and reduced database queries
+- **Mobile Responsive** - Optimized for all screen sizes with Tailwind CSS
+- **Order Management** - Complete order tracking and invoice generation
+- **Security Features** - Server-side price validation, input sanitization, and rate limiting
 
-##  Tech Stack
+## Tech Stack
 
-**Frontend:**
-- Next.js 15
+**Frontend**
+- Next.js 15 (App Router)
 - TypeScript
 - Tailwind CSS
 - Framer Motion
 - Zustand
 
-**Backend:**
-- Sanity CMS
-- Stripe
-- Clerk Authentication
-- Google Gemini AI
+**Backend & Services**
+- Sanity CMS (Headless CMS)
+- Stripe (Payments)
+- Clerk (Authentication)
+- Google Gemini AI (Chat Assistant)
+- Upstash Redis (Caching & Rate Limiting)
 
-**Deployment:**
+**Deployment**
 - Vercel
 
-##  Installation
+## Installation
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/muski85/tuvi-ai-ecommerce-website.git
-cd tuvi-ecommerce
+cd tuvi
 ```
 
 2. Install dependencies:
@@ -44,63 +47,98 @@ cd tuvi-ecommerce
 npm install
 ```
 
-3. Set up environment variables:
-Create a `.env.local` file with:
+3. Configure environment variables:
+
+Create a `.env.local` file:
 ```env
-# Sanity
-NEXT_PUBLIC_SANITY_PROJECT_ID=
-NEXT_PUBLIC_SANITY_DATASET=
-SANITY_API_TOKEN=
-SANITY_API_READ_TOKEN=
+# Sanity CMS
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your_api_token
+SANITY_API_READ_TOKEN=your_read_token
 
-# Clerk
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+CLERK_SECRET_KEY=your_secret_key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-# Stripe
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
+# Stripe Payments
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_publishable_key
+STRIPE_SECRET_KEY=your_secret_key
+STRIPE_WEBHOOK_SECRET=your_webhook_secret
 
-# Gemini AI
-GEMINI_API_KEY=
+# Google Gemini AI
+GEMINI_API_KEY=your_gemini_api_key
 
-# Base URL
+# Upstash Redis
+UPSTASH_REDIS_REST_URL=your_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_redis_token
+
+# Application
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
-4. Run development server:
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000)
+5. Access the application at [http://localhost:3000](http://localhost:3000)
 
-##  Screenshots
+6. Access Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio)
 
-(Add screenshots here)
+## Project Structure
 
-## Key Learnings
+```
+tuvi/
+├── app/                    # Next.js app directory
+│   ├── (client)/          # Client-facing pages
+│   ├── api/               # API routes (webhooks, chat, cache)
+│   └── studio/            # Sanity Studio
+├── components/            # React components
+├── lib/                   # Utilities (caching, rate limiting)
+├── sanity/               # Sanity schema and queries
+├── store/                # Zustand state management
+└── actions/              # Server actions
+```
 
-- Full-stack development with Next.js 15
-- AI integration with Google Gemini
-- Payment processing with Stripe webhooks
-- Headless CMS implementation
-- State management patterns
-- Real-time data synchronization
+## Key Features Implementation
 
-## Deployment
+### AI Shopping Assistant
+- Real-time product recommendations using Google Gemini
+- Context-aware responses based on product catalog
+- Rate-limited to prevent API abuse (10 requests/minute)
 
-Deployed on Vercel: [Live Demo](https://tuvi.vercel.app)
+### Payment Processing
+- Stripe checkout sessions with invoice generation
+- Webhook integration for order creation
+- Server-side price validation to prevent manipulation
+
+### Caching Strategy
+- Product data cached for 5-10 minutes in Redis
+- Automatic cache invalidation on product updates
+- Significantly reduced database queries and improved performance
+
+### Security
+- Server-side price validation
+- Input sanitization for AI prompts
+- Rate limiting on API endpoints
+- Strong product references in orders
+
+## Development Commands
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run typegen      # Generate TypeScript types from Sanity schema
+```
 
 ## License
 
-MIT License
+MIT
 
 ## Author
 
-**Your Name**
-- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
+GitHub: [@muski85](https://github.com/muski85)

@@ -1,12 +1,41 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
 import { getProducts } from '@/sanity/lib/helpers/queries';
+import { rateLimiters } from '@/lib/rate-limit';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(req: NextRequest) {
   try {
+    const identifier = req.ip || req.headers.get('x-forwarded-for') || 'anonymous';
+    const rateLimitResult = await rateLimiters.chat(identifier);
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          reply: `Whoa, slow down! You've sent too many messages. Please wait ${Math.ceil(rateLimitResult.reset / 60)} minute(s) before trying again.`,
+          rateLimitExceeded: true,
+          resetIn: rateLimitResult.reset
+        },
+        { status: 429 }
+      );
+    }
+
     const { message } = await req.json();
+
+    if (!message || typeof message !== 'string') {
+      return NextResponse.json(
+        { reply: 'Please provide a valid message.', products: [] },
+        { status: 400 }
+      );
+    }
+
+    if (message.length > 500) {
+      return NextResponse.json(
+        { reply: 'Your message is too long. Please keep it under 500 characters.', products: [] },
+        { status: 400 }
+      );
+    }
 
     // Get all products for context
     const products = await getProducts();

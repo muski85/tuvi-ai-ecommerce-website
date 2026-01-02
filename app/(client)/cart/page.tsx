@@ -1,9 +1,8 @@
 "use client";
 
-import Loading from "@/components/Loading";
 import useCartStore from "@/store";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser, useAuth } from "@clerk/nextjs";
 import Container from "@/components/Container";
 import NoAccessToCart from "@/components/NoAccessToCart";
@@ -25,7 +24,6 @@ import AnimatedHeart from "@/components/AnimatedHeart";
 import { createCheckoutSession, Metadata } from "@/actions/createCheckoutSession";
 
 const CartPage = () => {
-  const [isClient, setIsClient] = useState(false);
   const { isSignedIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const {
@@ -37,10 +35,6 @@ const CartPage = () => {
     getGroupedItems,
   } = useCartStore();
   const { user } = useUser();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const handleResetCart = () => {
     const confirmed = window.confirm(
@@ -79,17 +73,13 @@ const CartPage = () => {
 
   }
 
-  if (!isClient) {
-    return <Loading />;
-  }
-
   const cartProducts = getGroupedItems();
   const subtotal = getSubtotalPrice();
   const total = getTotalPrice();
   const discount = subtotal - total;
 
   return (
-    <div className="bg-gray-50 min-h-screen pb-52 md:pb-10">
+    <div className="bg-gray-50 min-h-screen pb-52 md:pb-10" suppressHydrationWarning>
       {isSignedIn ? (
         <Container className="py-6">
           {cartProducts?.length ? (
@@ -136,7 +126,7 @@ const CartPage = () => {
                                 className="border p-1 rounded-md overflow-hidden group shrink-0"
                               >
                                 <Image
-                                  src={urlFor(product?.images[0]).url()}
+                                  src={urlFor(product?.images[0]).width(300).height(300).url()}
                                   alt="productImage"
                                   loading="lazy"
                                   width={500}
@@ -379,10 +369,12 @@ const CartPage = () => {
                       />
                     </div>
                     <Button
+                      disabled={loading}
+                      onClick={handleCheckout}
                       className="rounded-full font-semibold px-8"
                       size="lg"
                     >
-                      Checkout
+                      {loading ? "Processing..." : "Checkout"}
                     </Button>
                   </div>
 

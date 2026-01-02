@@ -1,6 +1,7 @@
 import { defineQuery } from "next-sanity"
 import { sanityFetch } from "../live";
 import { client } from "../client";
+import { cacheWrapper, CACHE_CONFIG } from "@/lib/product-cache";
 
 export const getProductBySlug= async(slug:string)=>{
   const PRODUCT_BY_SLUG_QUERY=defineQuery(
@@ -69,19 +70,39 @@ export const getProducts = async () => {
       intro,
       description,
       slug,
+      images,
       category->{
         title
       }
     }`
   );
 
-  try {
-    const products = await sanityFetch({
-      query: PRODUCTS_QUERY,
-    });
-    return products.data || [];
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return [];
-  }
+  const products = await cacheWrapper(
+    CACHE_CONFIG.ALL_PRODUCTS.key,
+    CACHE_CONFIG.ALL_PRODUCTS.ttl,
+    async () => {
+      const result = await sanityFetch({
+        query: PRODUCTS_QUERY,
+      });
+      return result.data || [];
+    }
+  );
+
+  return products;
+};
+
+export const getProductsByIds = async (productIds: string[]) => {
+  const PRODUCTS_BY_IDS_QUERY = defineQuery(
+    `*[_type == "product" && _id in $productIds] {
+      _id,
+      name,
+      price,
+      discount,
+      stock,
+      images
+    }`
+  );
+
+  const products = await client.fetch(PRODUCTS_BY_IDS_QUERY, { productIds });
+  return products || [];
 };

@@ -27,15 +27,15 @@ const ImageView = ({images = []}: Props) => {
   return (
     <div className='w-full md:w-1/2 space-y-2 md:space-y-4'>
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           key={active?._key}
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           exit={{opacity: 0}}
           transition={{duration: 0.5}}
         className="w-full max-h-[550px] min-h-[450px] border border-darkColor/10 rounded-md group overflow-hidden">
-          <Image 
-            src={urlFor(active).url()}
+          <Image
+            src={urlFor(active).width(1200).height(1500).url()}
             alt="Product Image"
             width={700}
             height={700}
@@ -46,11 +46,11 @@ const ImageView = ({images = []}: Props) => {
       </AnimatePresence>
       <div className='grid grid-cols-6 gap-2 h-20 md:h-28'>
         {images?.map((image)=> (
-          <button 
+          <button
           onClick={()=> setActive(image)}
-          key={image?._key} className={`border rounded-md overflow-hidden 
+          key={image?._key} className={`border rounded-md overflow-hidden
             ${active?._key === image?._key ? "ring-1 ring-darkColor" : ""}`}>
-            <Image src={urlFor(image).url()}
+            <Image src={urlFor(image).width(200).height(200).url()}
             alt="productImage"
             width= {100}
             height={100}

@@ -70,6 +70,7 @@ export const orderType = defineType({
               title: "Product Bought",
               type: "reference",
               to: [{ type: "product" }],
+              weak: false, // Ensure strong reference so product data is always fetched
             }),
             defineField({
               name: "quantity",
@@ -81,15 +82,24 @@ export const orderType = defineType({
             select: {
               product: "product.name",
               quantity: "quantity",
-              image: "product.images.0",
+              image: "product.images",
               price: "product.price",
-              currency: "product.currency",
+              discount: "product.discount",
             },
             prepare(select) {
+              const { product, quantity, image, price, discount } = select;
+
+              // Calculate discounted price if discount exists
+              const finalPrice = discount
+                ? price * (1 - discount / 100)
+                : price;
+
+              const subtotal = finalPrice * quantity;
+
               return {
-                title: `${select.product} x ${select.quantity}`,
-                subtitle: `${select.price * select.quantity}`,
-                media: select.image,
+                title: `${product || 'Unknown Product'} × ${quantity}`,
+                subtitle: `$${finalPrice.toFixed(2)} each • Total: $${subtotal.toFixed(2)}${discount ? ` (${discount}% off)` : ''}`,
+                media: image && image[0] ? image[0] : undefined,
               };
             },
           },

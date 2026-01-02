@@ -3,6 +3,7 @@ import stripe from "@/lib/stripe";
 import { urlFor } from "@/sanity/lib/image";
 import { CartItem } from "@/store";
 import Stripe from "stripe";
+import { getProductsByIds } from "@/sanity/lib/helpers/queries";
 
 export interface Metadata {
   orderNumber: string;
@@ -18,11 +19,27 @@ interface CartItems {
 
 
 export async function createCheckoutSession(
-  items: CartItem[], 
+  items: CartItem[],
   metadata: Metadata
 
 ){
   try{
+    const productIds = items.map(item => item.product._id);
+    const serverProducts = await getProductsByIds(productIds);
+    const productMap = new Map(serverProducts.map((p: any) => [p._id, p]));
+
+    for (const item of items) {
+      const serverProduct = productMap.get(item.product._id);
+
+      if (!serverProduct) {
+        throw new Error(`Product ${item.product.name} no longer exists`);
+      }
+
+      if (serverProduct.stock !== null && serverProduct.stock !== undefined && serverProduct.stock < item.quantity) {
+        throw new Error(`Insufficient stock for ${item.product.name}. Only ${serverProduct.stock} available.`);
+      }
+    }
+
     const customers = await stripe.customers.list({
     email: metadata?.customerEmail,
     limit: 1,
@@ -45,22 +62,26 @@ export async function createCheckoutSession(
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?
     session_id={CHECKOUT_SESSION_ID}&orderNumber=${metadata.orderNumber}`,
     cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
-    line_items: items.map((item)=> ({
+    line_items: items.map((item)=> {
+      const serverProduct = productMap.get(item.product._id)!;
+      const price = serverProduct.price || 0;
+
+      return {
       price_data: {
         currency: "USD",
-        unit_amount: Math.round(item.product.price! * 100),
+        unit_amount: Math.round(price * 100),
         product_data:{
-          name:item.product.name || 'Unnamed Product',
+          name: serverProduct.name || 'Unnamed Product',
           description: item.product.description,
           metadata: {id: item.product._id},
           images:
-          item.product.images && item.product.images.length > 0
-            ? [urlFor(item.product.images[0]).url()]
+          serverProduct.images && serverProduct.images.length > 0
+            ? [urlFor(serverProduct.images[0]).url()]
             : undefined,
         },
       },
       quantity: item.quantity,
-    })),
+    }}),
   }
     if (customerId){
       sessionPayload.customer = customerId;

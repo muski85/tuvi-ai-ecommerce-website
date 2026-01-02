@@ -39,7 +39,7 @@ const AddToCartButton = ({product, className}: Props) => {
     disabled={isOutOfStock}
 
     className={cn("w-full bg-transparent text-darkColor shadow-none border border-darkColor/30 font-semibold tracking-wide hover:text-white hoverEffect", className)}>
-      AddToCartButton
+      {isOutOfStock ? "Out of Stock" : "Add to Cart"}
     </Button>
   )
     }
