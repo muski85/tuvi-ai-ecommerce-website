@@ -5,9 +5,9 @@ import { Check, Home, Package, ShoppingBag } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 
-const SuccessPage = () => {
+const SuccessPageContent = () => {
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("orderNumber");
   const sessionId = searchParams.get("session_id");
@@ -86,6 +86,25 @@ const SuccessPage = () => {
 
       </motion.div>
     </div>
+  )
+}
+
+const SuccessPage = () => {
+  return (
+    <Suspense fallback={
+      <div className="py-10 bg-gradient-to-br from-gray-50 to gray-100 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl px-8 py-12 max-w-xl w-full text-center">
+          <div className="animate-pulse space-y-4">
+            <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto"></div>
+            <div className="h-8 bg-gray-200 rounded w-3/4 mx-auto"></div>
+            <div className="h-4 bg-gray-200 rounded w-full"></div>
+            <div className="h-4 bg-gray-200 rounded w-5/6 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    }>
+      <SuccessPageContent />
+    </Suspense>
   )
 }
 

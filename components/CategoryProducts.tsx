@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { CATEGORIES_QUERYResult, Product } from '@/sanity.types';
+import { CATEGORIES_QUERY_RESULT, Product } from '@/sanity.types';
 import { Button } from '@/components/ui/button';
 import { client } from '@/sanity/lib/client';
 import NoProductsAvailaible from './NoProductsAvailaible';
@@ -12,7 +12,7 @@ import Title from './Title';
 import { useRouter } from 'next/navigation'; 
 //stop
 interface Props {
-  categories: CATEGORIES_QUERYResult;
+  categories: CATEGORIES_QUERY_RESULT;
   slug: string;
 }
 

@@ -7,12 +7,12 @@ import Link from 'next/link';
 import headerData from '@/constants';
 import SocialMedia from './SocialMedia';
 import { useOutsideClick } from '@/hooks/useOutsideClick';
-import { CATEGORIES_QUERYResult } from '@/sanity.types';
+import { CATEGORIES_QUERY_RESULT } from '@/sanity.types';
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  categories: CATEGORIES_QUERYResult,
+  categories: CATEGORIES_QUERY_RESULT,
 }
 
 const Sidebar: FC<SidebarProps>= ({

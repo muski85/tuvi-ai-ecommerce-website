@@ -1,5 +1,5 @@
 "use client";
-import { MY_ORDERS_QUERYResult } from "@/sanity.types";
+import { MY_ORDERS_QUERY_RESULT } from "@/sanity.types";
 import React, { useState } from "react";
 import { TableBody, TableCell, TableRow } from "./ui/table";
 import {
@@ -12,9 +12,9 @@ import { format } from "date-fns";
 import PriceFormatter from "./PriceFormatter";
 
 import OrderDetailsDialog from "./OrderDetailsDialog";
-const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
+const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERY_RESULT }) => {
   const [selectedOrder, setSelectedOrder] = useState<
-    MY_ORDERS_QUERYResult[number] | null
+    MY_ORDERS_QUERY_RESULT[number] | null
   >(null);
 
   return (

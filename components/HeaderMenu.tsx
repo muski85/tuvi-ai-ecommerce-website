@@ -2,9 +2,9 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import React from 'react'
-import { CATEGORIES_QUERYResult } from '@/sanity.types';
+import { CATEGORIES_QUERY_RESULT } from '@/sanity.types';
 
-const HeaderMenu = ({categories}: {categories: CATEGORIES_QUERYResult}) => {
+const HeaderMenu = ({categories}: {categories: CATEGORIES_QUERY_RESULT}) => {
   const pathname = usePathname();
   return (
     <div className= "hidden md:inline-flex w-1/3 items-center gap-5 text-sm capitalize font-semibold">

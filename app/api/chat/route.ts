@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(req: NextRequest) {
   try {
-    const identifier = req.ip || req.headers.get('x-forwarded-for') || 'anonymous';
+    const identifier = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'anonymous';
     const rateLimitResult = await rateLimiters.chat(identifier);
 
     if (!rateLimitResult.success) {
